@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "99df5a29-58c9-4283-b60f-f338b286ba14",
+		"name": "Finaciera Oh Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11554414"
+	},
+	"item": [
+		{
+			"name": "Get Principal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Retornar un status code de 200\", () => {",
+							"    pm.response.to.have.status(200) // assert (pm.response.to.have)",
+							"});",
+							"",
+							"pm.test(\"Retornar Hola Mundo en el mensaje\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.mensaje).to.eql(\"Hola mundo\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Evaluación Tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code debe ser 400 Bad Request\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Body contiene string de Datos invalidos\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Datos inválidos\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/evaluaciones/tarjetas?edad=-5&ingresos=-6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"evaluaciones",
+						"tarjetas"
+					],
+					"query": [
+						{
+							"key": "edad",
+							"value": "-5"
+						},
+						{
+							"key": "ingresos",
+							"value": "-6"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Evaluación Tarjeta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/evaluaciones/tarjetas?edad=-5&ingresos=-6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"evaluaciones",
+								"tarjetas"
+							],
+							"query": [
+								{
+									"key": "edad",
+									"value": "-5"
+								},
+								{
+									"key": "ingresos",
+									"value": "-6"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Tarjeta Oh Clásica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code debe ser 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Calificar para TarjetaOH con linea de 2000\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.aprobado).to.eql(true);",
+							"    pm.expect(jsonData.data.categoria).to.eql(\"Tarjeta OH\");",
+							"    pm.expect(jsonData.data.linea).to.eql(2000);    ",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/evaluaciones/tarjetas?edad=20&ingresos=2000",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"evaluaciones",
+						"tarjetas"
+					],
+					"query": [
+						{
+							"key": "edad",
+							"value": "20"
+						},
+						{
+							"key": "ingresos",
+							"value": "2000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tarjeta OhPremium",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Calificar para Tarjeta OH Premium\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.aprobado).to.eql(true);",
+							"    pm.expect(jsonData.data.categoria).to.eql(\"Tarjeta OH Premium\");",
+							"    pm.expect(jsonData.data.linea).to.eql(10000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/evaluaciones/tarjetas?edad=55&ingresos=10000",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"evaluaciones",
+						"tarjetas"
+					],
+					"query": [
+						{
+							"key": "edad",
+							"value": "55"
+						},
+						{
+							"key": "ingresos",
+							"value": "10000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
