@@ -7,7 +7,7 @@ app = FastAPI()
 def root():
   return {"mensaje": "Hola mundo"}
 
-@app.get("/evaluaciones/tarjetas")
+@app.get("/evaluar/tarjetas")
 def evaluarTarjetaCredito(edad: int, ingresos: float):
   if edad < 0 or ingresos < 0:
     raise HTTPException(status_code=400, detail="Datos inválidos")
